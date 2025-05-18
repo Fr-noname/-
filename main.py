@@ -20,7 +20,7 @@ class Main_Wind(QMainWindow):
 def make_reserve_arc(source, dest):
     time = (str(datetime.datetime.now()).replace(' ', '_'))
     time = time.replace('.', ':')
-    shutil.make_archive(base_name=time, format='7Z', root_dir=source.strip())
+    shutil.make_archive(base_name=time.strip(), format='7Z', root_dir=source.strip())
     shutil.move(time.strip() + '.7Z', dest.strip())
 
 
