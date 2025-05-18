@@ -13,15 +13,15 @@ class Main_Wind(QMainWindow):
         self.pushButton.clicked.connect(self.buttons)
 
     def buttons(self):
-        self.make_reserve_arc(self.source.text(), self.dest.text())
+        print(self.source.text(), self.dest.text())
+        make_reserve_arc(self.source.text(), self.dest.text())
 
-    def make_reserve_arc(self, source, dest):
-        try:
-            shutil.make_archive(source.strip().split('/')[-1] + str(datetime.datetime.now()).replace(' ', '')[:-7],
-                                'zip', root_dir=source)
-            shutil.move(source + str(datetime.datetime.now()).replace(' ', '')[:-7] + '.zip', dest)
-        except Exception:
-            print('Error')
+
+def make_reserve_arc(source, dest):
+    time = (str(datetime.datetime.now()).replace(' ', '_'))
+    time = time.replace('.', ':')
+    shutil.make_archive(base_name=time, format='7Z', root_dir=source.strip())
+    shutil.move(time.strip() + '.7Z', dest.strip())
 
 
 if __name__ == '__main__':
